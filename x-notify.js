@@ -2,6 +2,7 @@
 * Website: https://www.xtrendence.com
 * Portfolio: https://www.xtrendence.dev
 * GitHub: https://www.github.com/Xtrendence
+* Modify by: Huang, Po-Hsuan (aben20807)
 */
 class XNotify {
 	constructor(position) {
@@ -12,24 +13,21 @@ class XNotify {
 			borderRadius: "10px",
 			duration: 5000,
 			color: "rgb(255,255,255)",
+			additionalStyle: "font-size:18px; line-height:25px;",
 			success: {
-				title: "Success Notification",
-				description: "Whatever you did, it worked.",
+				content: "Success Notification",
 				background: "rgb(40,200,80)"
 			},
 			error: {
-				title: "Error Notification",
-				description: "That didn't work out, did it?",
+				content: "Error Notification",
 				background: "rgb(230,50,50)"
 			},
 			alert: {
-				title: "Alert Notification",
-				description: "This is probably important...",
+				content: "Alert Notification",
 				background: "rgb(240,180,10)"
 			},
 			info: {
-				title: "Info Notification",
-				description: "Just so you know...",
+				content: "Info Notification",
 				background: "rgb(170,80,220)"
 			}
 		};
@@ -40,9 +38,9 @@ class XNotify {
 
 		this.borderRadius = this.empty(options.borderRadius) ? this.defaults.borderRadius : options.borderRadius;
 
-		this.title = this.empty(options.title) ? this.defaults[type].title : options.title;
+		this.additionalStyle = this.empty(options.additionalStyle) ? this.defaults[type].additionalStyle : options.additionalStyle;
 
-		this.description = this.empty(options.description) ? this.defaults[type].description : options.description;
+		this.content = this.empty(options.content) ? this.defaults[type].content : options.content;
 
 		this.duration = this.empty(options.duration) ? this.defaults.duration : options.duration;
 
@@ -127,7 +125,7 @@ class XNotify {
 		notification.classList.add("x-notification");
 		notification.style = 'background:' + this.background + '; color:' + this.color + '; width:' + this.width + '; border-radius:' + this.borderRadius + '; padding:10px 12px 12px 12px; font-family:"Helvetica Neue", "Lucida Grande", "Arial", "Verdana", "Tahoma", sans-serif; display:inline-block; text-align:left; opacity:0; pointer-events:auto; -webkit-user-select:none; -khtml-user-select:none; -moz-user-select:none; -ms-user-select:none; user-select:none; outline:none;';
 
-		notification.innerHTML = '<span style="font-size:18px; font-weight:bold; color:' + this.color + '; display:block; line-height:25px;">' + this.title + '</span><span style="font-size:16px; color:' + this.color + '; display:block; margin-top:5px; line-height:25px;">' + this.description + '</span>';
+		notification.innerHTML = '<span style="' + this.additionalStyle + ' color:' + this.color + '; display:block;">' + this.content + '</span>';
 
 		row.append(notification);
 
